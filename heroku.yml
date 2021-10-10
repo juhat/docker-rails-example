@@ -7,15 +7,14 @@ setup:
     - plan: heroku-redis
       as: REDIS_CACHE
   config:
-    S3_BUCKET: my-example-bucket
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
 build:
   docker:
     web: Dockerfile
-    worker: Dockerfile
-    cable: Dockerfile
   config:
     RAILS_ENV: production
-#release:
-#  web:
-#  worker:
-#  cable:
+release:
+  web: rails server
+  worker: sidekiq -C config/sidekiq.yml
+  cable: puma -p 28080 cable/config.ru

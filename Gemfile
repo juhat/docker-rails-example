@@ -18,7 +18,7 @@ gem 'turbo-rails', '0.7.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '4.4.0'
+# gem 'redis', '4.4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '1.7.7', require: false
 
@@ -53,3 +53,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
+gem "hiredis"
+gem "redis-session-store"
