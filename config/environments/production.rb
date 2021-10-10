@@ -108,7 +108,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.cache_store = :redis_cache_store, {driver: :hiredis, url: ENV.fetch("REDIS_URL")}
+  config.cache_store = :redis_cache_store, {driver: :hiredis, url: ENV.fetch("REDIS_URL") { "redis://redis:6379/1" }  }
 
   config.session_store :redis_session_store,
                        key: "_session_production",
@@ -118,6 +118,6 @@ Rails.application.configure do
                          expire_after: 1.year,
                          ttl: 1.year,
                          key_prefix: "app:session:",
-                         url: ENV.fetch("REDIS_CACHE_URL")
+                         url: ENV.fetch("REDIS_CACHE_URL") { "redis://redis:6379/1" }
                        }
 end
