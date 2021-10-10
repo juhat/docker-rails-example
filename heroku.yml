@@ -16,11 +16,14 @@ build:
     RAILS_ENV: production
 run:
   web:
-    command: rails server
+    command:
+      - rails server
     image: web
   worker:
-    command: sidekiq -C config/sidekiq.yml
+    command:
+      - sidekiq -C config/sidekiq.yml
     image: web
   cable:
-    command: puma -p 28080 cable/config.ru
+    command:
+      - puma -p 28080 cable/config.ru
     image: web
